@@ -155,7 +155,7 @@ export const App: React.FC = () => {
 
             {/* GitHub Repo */}
             <a
-              href="https://github.com/nikhilgrover/subway-arrivals"
+              href="https://github.com/nikhilgrover/mta-feed"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-zinc-800 transition-colors"

@@ -4,7 +4,7 @@ A high-fidelity real-time NYC Subway arrival tracking website built with **React
 
 Includes an authentic **rotating overhead LED countdown sign** replicating the physical countdown clocks installed in NYC subway stations.
 
-![NYC Subway Arrivals Banner](https://raw.githubusercontent.com/nikhilgrover/subway-arrivals/main/public/preview.png)
+![NYC Subway Arrivals Banner](https://raw.githubusercontent.com/nikhilgrover/mta-feed/main/public/preview.png)
 
 ---
 
@@ -70,8 +70,8 @@ Includes an authentic **rotating overhead LED countdown sign** replicating the p
 
 ### 2. Installation
 ```bash
-git clone https://github.com/nikhilgrover/subway-arrivals.git
-cd subway-arrivals
+git clone https://github.com/nikhilgrover/mta-feed.git
+cd mta-feed
 npm install
 ```
 
@@ -118,7 +118,7 @@ Your site will be live at:
 ## 📁 Project Structure
 
 ```
-subway-arrivals/
+mta-feed/
 ├── firebase.json               # Firebase Hosting configuration & SPA rewrites
 ├── .firebaserc                 # Firebase project mapping
 ├── index.html                  # HTML entry point with dark theme
