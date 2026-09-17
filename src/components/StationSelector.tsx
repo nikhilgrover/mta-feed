@@ -29,9 +29,21 @@ export const StationSelector: React.FC<StationSelectorProps> = ({
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('subway_favorites');
-      return saved ? JSON.parse(saved) : ['127', 'L08', '631', '635']; // default favorites: Times Sq, Bedford, Grand Central, Union Sq
+      if (saved) {
+        let parsed: string[] = JSON.parse(saved);
+        const needed = ['235', 'D24', 'R31'];
+        const missing = needed.filter(id => !parsed.includes(id));
+        if (missing.length > 0) {
+          parsed = [...missing, ...parsed];
+          localStorage.setItem('subway_favorites', JSON.stringify(parsed));
+        }
+        return parsed;
+      }
+      const initial = ['235', 'D24', 'R31', '127', 'L08', '631', '635'];
+      localStorage.setItem('subway_favorites', JSON.stringify(initial));
+      return initial;
     } catch {
-      return ['127', 'L08', '631', '635'];
+      return ['235', 'D24', 'R31', '127', 'L08', '631', '635'];
     }
   });
   const [showFilters, setShowFilters] = useState(false);

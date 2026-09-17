@@ -10,6 +10,7 @@ export interface Station {
   ada: boolean;
   lat: number;
   lon: number;
+  stopIds?: string[];
 }
 
 export const STATIONS: Station[] = [
@@ -7231,6 +7232,9 @@ export const STATIONS: Station[] = [
 ];
 
 export const POPULAR_STATION_IDS = [
+  '235', // Atlantic Av-Barclays Ctr (2,3,4,5)
+  'D24', // Atlantic Av-Barclays Ctr (B,Q)
+  'R31', // Atlantic Av-Barclays Ctr (D,N,R)
   '127', // Times Sq-42 St (1,2,3)
   'R16', // Times Sq-42 St (N,Q,R,W)
   '631', // Grand Central-42 St (4,5,6)
@@ -7244,8 +7248,6 @@ export const POPULAR_STATION_IDS = [
   'D20', // W 4 St-Wash Sq (B,D,F,M)
   'L08', // Bedford Av (L)
   'A41', // Jay St-MetroTech (A,C,F)
-  '235', // Atlantic Av-Barclays Ctr (2,3,4,5)
-  'R31', // Atlantic Av-Barclays Ctr (B,D,N,Q,R)
   '414', // 161 St-Yankee Stadium (4)
   'D11', // 161 St-Yankee Stadium (B,D)
   '701', // Flushing-Main St (7)

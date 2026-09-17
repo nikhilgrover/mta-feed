@@ -51,26 +51,20 @@ export const SubwaySign: React.FC<SubwaySignProps> = ({
   const signRef = useRef<HTMLDivElement>(null);
   const announcedTripsRef = useRef<Set<string>>(new Set());
 
-  // Filter arrivals by selected direction
+  // Filter arrivals by selected direction and limit strictly to next 3 upcoming trains
   const filteredArrivals = arrivals.filter((a) => {
     if (directionFilter === 'ALL') return true;
     return a.direction === directionFilter;
   });
 
-  const ITEMS_PER_PAGE = 3;
-  const totalPages = Math.max(1, Math.ceil(filteredArrivals.length / ITEMS_PER_PAGE));
+  // Display strictly the next 3 upcoming trains in the realtime section
+  const pageArrivals = filteredArrivals.slice(0, 3);
+  const totalPages = 1;
 
   // Reset page when direction filter changes
   useEffect(() => {
     setCurrentPage(0);
   }, [directionFilter]);
-
-  // Keep page index within bounds if arrivals change
-  useEffect(() => {
-    if (currentPage >= totalPages) {
-      setCurrentPage(0);
-    }
-  }, [totalPages, currentPage]);
 
   // Clock update (NYC time)
   useEffect(() => {
@@ -146,9 +140,6 @@ export const SubwaySign: React.FC<SubwaySignProps> = ({
     return () => document.removeEventListener('fullscreenchange', handleFsChange);
   }, []);
 
-  // Sliced items for the current page
-  const startIndex = currentPage * ITEMS_PER_PAGE;
-  const pageArrivals = filteredArrivals.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   // Marquee announcement text: alerts + station courtesies
   const alertTickerText = alerts.length > 0
@@ -270,10 +261,8 @@ export const SubwaySign: React.FC<SubwaySignProps> = ({
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] text-amber-400/80 font-bold">
-                <span>PAGE {currentPage + 1} / {totalPages}</span>
-                {isRotating && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-                )}
+                <span>NEXT 3 TRAINS</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
               </div>
             </div>
 

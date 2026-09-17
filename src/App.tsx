@@ -26,17 +26,18 @@ import {
 const REFRESH_INTERVAL_SECONDS = 30;
 
 export const App: React.FC = () => {
-  // Default station: Times Sq-42 St (1,2,3) or Bedford Av (L) or restore from localStorage
+  // Default station: Atlantic Av-Barclays Ctr (2, 3, 4, 5, B, D, N, Q, R)
   const [selectedStation, setSelectedStation] = useState<Station>(() => {
     try {
       const savedId = localStorage.getItem('last_selected_station_id');
-      if (savedId) {
+      // If previously defaulted to 127 or null, switch to Atlantic Av-Barclays Ctr
+      if (savedId && savedId !== '127') {
         const found = STATIONS.find((s) => s.id === savedId);
         if (found) return found;
       }
     } catch {}
-    // Default to Times Sq-42 St (1, 2, 3)
-    return STATIONS.find((s) => s.id === '127') || STATIONS[0];
+    // Default to Atlantic Av-Barclays Ctr ('235')
+    return STATIONS.find((s) => s.id === '235') || STATIONS[0];
   });
 
   const [arrivalsResult, setArrivalsResult] = useState<StationArrivalsResult | null>(null);

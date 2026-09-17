@@ -213,7 +213,9 @@ export async function fetchArrivalsForStation(
 ): Promise<StationArrivalsResult> {
   const feedKeys = getFeedsForRoutes(station.routes);
   const stopIdsToMatch = new Set<string>(
-    targetStopIds && targetStopIds.length > 0 ? targetStopIds : [station.id]
+    targetStopIds && targetStopIds.length > 0
+      ? targetStopIds
+      : (station.stopIds && station.stopIds.length > 0 ? station.stopIds : [station.id])
   );
 
   const nowEpoch = Math.floor(Date.now() / 1000);
